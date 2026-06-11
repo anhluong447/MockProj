@@ -1,0 +1,5 @@
+
+# GraphRAG data and subfolder venv
+.graphrag_data/
+../../venv/
+../../.env
