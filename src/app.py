@@ -126,6 +126,8 @@ class Application:
         print(f"  Failed jobs:        {queue_metrics['failed_tasks']}")
         print(f"  Average worker latency: {queue_metrics['average_latency_ms']:.2f} ms")
         print("=" * 60)
+#if something happens to me 
+#i want you to run this code again
 
 if __name__ == "__main__":
     app = Application()
