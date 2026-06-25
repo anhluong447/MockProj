@@ -13,5 +13,6 @@ __pycache__/
 htmlcov/
 .env
 tests/
+.agent/
 
 .graphrag_data/.nelgraph.lock
