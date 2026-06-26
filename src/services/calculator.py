@@ -57,10 +57,14 @@ class CalculatorService(BaseService):
         # Round to configured precision
         return round(raw_res, self.config.precision)
 
-    async def calculate_async(self, expression: str, variables: Optional[Dict[str, float]] = None) -> CalculationContext:
+    async def calculate_async(self, expression: str, variables: Optional[Dict[str, float]] = None,
+                              repo: Optional[Any] = None) -> CalculationContext:
         """Asynchronously executes the math evaluation through the middleware pipeline."""
         context = CalculationContext(expression, variables)
-        return await self.pipeline.execute(context, self._core_eval)
+        ctx = await self.pipeline.execute(context, self._core_eval)
+        if repo:
+            repo.save(ctx)
+        return ctx
 
     def calculate_sync(self, expression: str, variables: Optional[Dict[str, float]] = None) -> float:
         """Synchronously executes the math evaluation bypassing async middleware (no caching/latency)."""
